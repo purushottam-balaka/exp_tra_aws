@@ -32,7 +32,7 @@ app.use(route);
 //     }
 // }))
 app.use(compression());
-app.use(morgan('combined',{stream:accessLogStream}));
+//app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
 app.use(cors());
 
