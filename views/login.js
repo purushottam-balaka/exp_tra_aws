@@ -6,7 +6,7 @@ async function login_save(e){
     gmail:e.target.gmail.value,
     password:e.target.pwd.value,
         }
-    const resp= await axios.post(`http://3.111.170.41:9000/login`,loginDetails);
+    const resp= await axios.post(`http://3.110.32.173:9000/login`,loginDetails);
     localStorage.setItem('token',resp.data.token);
     window.location.href="./expenseTracker.html";
 
