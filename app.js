@@ -14,7 +14,7 @@ require('dotenv').config();
 const helmet=require('helmet');
 const morgan=require('morgan');
 const compression=require('compression');
-const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
+//const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
 const port=process.env.PORT;
 const app=express();
 
