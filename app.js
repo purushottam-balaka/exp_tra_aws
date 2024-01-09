@@ -35,6 +35,9 @@ app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
 app.use(cors());
+const corsOptions = {
+  origin: "http://65.2.167.147:9000",
+};
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
