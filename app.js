@@ -35,11 +35,6 @@ app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
 app.use(cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://65.2.167.147:9000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
