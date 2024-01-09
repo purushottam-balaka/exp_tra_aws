@@ -34,7 +34,7 @@ app.use(route);
 app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
-app.use(cors());
+//app.use(cors());
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
