@@ -11,7 +11,7 @@ const orders=require('./model/order');
 const path=require('path')
 const forgotPasswords=require('./model/forget_passwords')
 require('dotenv').config();
-const helmet=require('helmet');
+//const helmet=require('helmet');
 const morgan=require('morgan');
 const compression=require('compression');
 //const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
@@ -34,7 +34,7 @@ app.use(route);
 app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
-app.use(cors());
+//app.use(cors());
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
