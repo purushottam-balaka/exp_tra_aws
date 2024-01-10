@@ -26,7 +26,13 @@ app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
 
-app.use(cors());
+// app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
 users.hasMany(expenses);
 expenses.belongsTo(users);
 
