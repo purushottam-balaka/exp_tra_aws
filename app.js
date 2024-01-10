@@ -25,10 +25,13 @@ app.use(route);
 app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
-app.use(cors({
-  origin:"http://13.127.65.42:9000"
-        }
-            ));
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://example.com'); // Replace with your domain
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST,DELETE,PUT, OPTIONS',);
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
