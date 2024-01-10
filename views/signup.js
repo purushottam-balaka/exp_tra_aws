@@ -13,7 +13,7 @@ function login(){
         }
         console.log('signup_details',signUpDetails)
 
-        const res=await axios.post("http://65.2.167.147:9000/signup",signUpDetails);
+        const res=await axios.post("http://13.127.65.42:9000/signup",signUpDetails);
         
         if(res.status==200){
             window.location.href="./login.html";
