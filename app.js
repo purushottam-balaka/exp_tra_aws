@@ -26,7 +26,7 @@ app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
 app.use(cors({
-  origin:"http://13.127.65.42"
+  origin:"http://13.127.65.42:9000"
         }
             ));
 
