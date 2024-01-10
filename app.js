@@ -36,7 +36,7 @@ app.use(compression());
 app.use(express.static('views'));
 app.use(cors());
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http:13.127.65.42//:9000");
+  res.header("Access-Control-Allow-Origin", "http:13.127.65.42:9000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
