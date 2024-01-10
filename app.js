@@ -22,24 +22,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(route);
 
-// app.use(helmet.contentSecurityPolicy({
-//   directives: {
-//     defaultSrc: ["'self'"],
-//     scriptSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net",
-//     "checkout.razorpay.com","ajax.googleapis.com","maxcdn.bootstrapcdn.com"],
-//     scriptSrcAttr:["'self'", "'unsafe-inline'"],
-//     frameSrc: ["'self'","api.razorpay.com"],
-//     }
-// }))
 app.use(compression());
 //app.use(morgan('combined',{stream:accessLogStream}));
 app.use(express.static('views'));
-app.use(cors());
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http:13.127.65.42:9000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors({
+  origin:"http://13.127.65.42"
+        }
+            ));
 
 users.hasMany(expenses);
 expenses.belongsTo(users);
