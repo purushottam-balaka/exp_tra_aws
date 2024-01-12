@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded',async()=>{
             btn.onclick=async() =>{
             try{
             const token=localStorage.getItem('token');
-            //console.log('purchase script',token)
+            console.log('purchase script',token)
             const res=await axios.get('http://13.127.65.42:9000/purchase_premium',{headers: {'Authorization':token}})
             var options={
                 "key":res.data.key_id,
