@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded',async()=>{
     const row=localStorage.getItem('no_rows');
     document.getElementById('no_of_expenses').value=row
     
-    await axios.get(`http://3.111.245.66:9000/get_expenses?page=${page}&&rows=${row}`,{headers:{'Authorization':token}})
+    await axios.get(`http://13.232.211.122:9000/get_expenses?page=${page}&&rows=${row}`,{headers:{'Authorization':token}})
     .then(({data:{products,prime, ...pageData}})=>{
         
         showExpeneseOnScreen(products);
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded',async()=>{
                     button.onclick=async()=>{
                     try{
                         
-                        const res=await axios.get('http://3.111.245.66:9000/leaderboard')
+                        const res=await axios.get('http://13.232.211.122:9000/leaderboard')
                         const h4=document.getElementById('h4');
                         h4.innerHTML='Leader board:';
                         for(let i=0;i<res.data.user.length;i++){
@@ -56,12 +56,12 @@ window.addEventListener('DOMContentLoaded',async()=>{
             try{
             const token=localStorage.getItem('token');
             console.log('purchase script',token)
-            const res=await axios.get('http://3.111.245.66:9000/purchase_premium',{headers: {'Authorization':token}})
+            const res=await axios.get('http://13.232.211.122:9000/purchase_premium',{headers: {'Authorization':token}})
             var options={
                 "key":res.data.key_id,
                 "order_id":res.data.order.id,
                 "handler":async function(res){
-                const d1= await axios.post('http://3.111.245.66:9000/update_purchase',{
+                const d1= await axios.post('http://13.232.211.122:9000/update_purchase',{
                         order_id:options.order_id,
                         payment_id:res.razorpay_payment_id,
                     },{ headers:{"Authorization":token}})
@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded',async()=>{
             rzp1.on('payment.failed',async function(){
                 try{
                     const key=res.data.order.id;
-                    const response=await axios.post('http://3.111.245.66:9000/update_purchase',{
+                    const response=await axios.post('http://13.232.211.122:9000/update_purchase',{
                         'order_id':key,
                         'payment_id': null,
                     },{ headers:{"Authorization":token}})
@@ -132,11 +132,11 @@ function showExpeneseOnScreen(exp){
     editButton.onclick=async()=>{
         try{
             const token=localStorage.getItem('token');
-            const user=await axios.get(`http://3.111.245.66:9000/edit_expense/${editButton.id}`,{headers:{'Authorization':token}})
+            const user=await axios.get(`http://13.232.211.122:9000/edit_expense/${editButton.id}`,{headers:{'Authorization':token}})
             document.getElementById('cost').value=user.data.data.cost;
             document.getElementById('desc').value=user.data.data.description;
             document.getElementById('cate').value=user.data.data.category;
-            await axios.delete(`http://3.111.245.66:9000/delete_expense/${editButton.id}`,{headers:{'Authorization':token}})    
+            await axios.delete(`http://13.232.211.122:9000/delete_expense/${editButton.id}`,{headers:{'Authorization':token}})    
             parentEle.removeChild(chiledEle)
         }catch(err){
         console.log(err)
@@ -146,7 +146,7 @@ function showExpeneseOnScreen(exp){
         try{               
         const token=localStorage.getItem('token')
         parentEle.removeChild(chiledEle)
-        await axios.delete(`http://3.111.245.66:9000/delete_expense/${delButton.id}`,{headers:{'Authorization':token}})
+        await axios.delete(`http://13.232.211.122:9000/delete_expense/${delButton.id}`,{headers:{'Authorization':token}})
          .then((resp)=>{
             window.location.reload();
          }).catch(err =>{
@@ -191,7 +191,7 @@ function showPagination({
 async function getProdcuts(page){
     const token=localStorage.getItem('token')
     const row=localStorage.getItem('no_rows')
-    await axios.get(`http://3.111.245.66:9000/get_expenses?page=${page}&&rows=${row}`,{headers:{Authorization:token}})
+    await axios.get(`http://13.232.211.122:9000/get_expenses?page=${page}&&rows=${row}`,{headers:{Authorization:token}})
     .then(({data:{products, ...pageData}})=>{
         showExpeneseOnScreen(products);
         showPagination(pageData);
@@ -218,7 +218,7 @@ async function getProdcuts(page){
             }
         console.log(expenseDetails)
         const token=localStorage.getItem('token');
-         await axios.post('http://3.111.245.66:9000/add_expense',expenseDetails,{headers: {'Authorization':token}})
+         await axios.post('http://13.232.211.122:9000/add_expense',expenseDetails,{headers: {'Authorization':token}})
          .then((res)=>{
             window.location.reload();
          }).catch((err)=>{
@@ -232,7 +232,7 @@ async function getProdcuts(page){
     }
 }
     async function downloadFile(e){
-       axios.get('http://3.111.245.66:9000/download',{headers:{Authorization:token}})
+       axios.get('http://13.232.211.122:9000/download',{headers:{Authorization:token}})
        .then((resp)=>{
         if(resp.status===200){
             var a=document.createElement('a')
